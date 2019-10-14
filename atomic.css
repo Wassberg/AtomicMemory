@@ -1,0 +1,109 @@
+:root {
+  --grid-rows: 4;
+  --grid-cols: 9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#memory-container {
+  max-width: 900px;
+  margin: auto;
+  border: 3px solid black;
+  padding: 2rem;
+  background: aquamarine;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), 1fr);
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
+}
+
+.memory-grid .memory-card {
+  position: relative;
+  display: grid;
+  font-size: 2rem;
+  text-align: center;
+  height: 100px;
+  width: 80px;
+  padding: 0.2rem;
+  border: #000 2px solid;
+  background: white;
+}
+
+.memory-grid .memory-card.card-unset {
+  grid-template-areas:
+    "hearts diams"
+    "spades clubs";
+}
+
+.memory-grid .memory-card.card-set {
+  grid-template-areas:
+    "suit trash"
+    "value value";
+}
+
+.memory-grid .memory-card.card.unset span.color-hearts {
+  grid-area: hearts;
+}
+.memory-grid .memory-card.card-unset span.color-diams {
+  grid-area: diams;
+}
+.memory-grid .memory-card.card-unset span.color-spades {
+  grid-area: spades;
+}
+.memory-grid .memory-card.card-unset span.color-clubs {
+  grid-area: clubs;
+}
+.memory-grid .memory-card.card-set span[class|="color"] {
+  grid-area: suit;
+  text-align: left;
+  margin: 0 5px;
+}
+.memory-grid .memory-card.card-set > span.card-value {
+  grid-area: value;
+}
+.memory-grid .memory-card.card-set > i.trash {
+  grid-area: trash;
+  text-align: right;
+  color: rgba(58, 60, 61, 0);
+  transition: color 0.5s;
+}
+
+.memory-grid .memory-card.card-set > i.trash:hover {
+  color: rgba(58, 60, 61, 1);
+}
+
+.memory-grid .memory-card > span,
+.memory-grid .memory-card.card-set > i {
+  cursor: pointer;
+}
+
+.memory-grid .memory-card .color-hearts,
+.memory-grid .memory-card .color-diamonds {
+  color: red;
+}
+
+.memory-grid .memory-card .sel-menu {
+  position: absolute;
+  top: -2px;
+  left: 100%;
+  z-index: 2;
+  background: #ececec;
+  border: #000 2px solid;
+  z-index: 2;
+}
+
+.memory-grid .memory-card .sel-menu > *:hover {
+  background: orange;
+  cursor: pointer;
+}
