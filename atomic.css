@@ -14,11 +14,12 @@ body {
 }
 
 #memory-container {
-  max-width: 900px;
+  width: 900px;
   margin: auto;
   border: 3px solid black;
   padding: 2rem;
   background: aquamarine;
+  overflow: hidden;
 }
 
 .memory-grid {
@@ -31,10 +32,12 @@ body {
 .memory-grid .memory-card {
   position: relative;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  row-gap: 1.5rem;
+  height: 10rem;
   font-size: 2rem;
   text-align: center;
-  height: 100px;
-  width: 80px;
   padding: 0.2rem;
   border: #000 2px solid;
   background: white;
@@ -47,9 +50,12 @@ body {
 }
 
 .memory-grid .memory-card.card-set {
+  grid-template-rows: repeat(3, 1fr);
   grid-template-areas:
     "suit trash"
-    "value value";
+    "value value"
+    ". .";
+  row-gap: 0;
 }
 
 .memory-grid .memory-card.card.unset span.color-hearts {
@@ -66,11 +72,12 @@ body {
 }
 .memory-grid .memory-card.card-set span[class|="color"] {
   grid-area: suit;
-  text-align: left;
   margin: 0 5px;
 }
 .memory-grid .memory-card.card-set > span.card-value {
   grid-area: value;
+  align-self: end;
+  font-weight: bold;
 }
 .memory-grid .memory-card.card-set > i.trash {
   grid-area: trash;
@@ -105,5 +112,16 @@ body {
 
 .memory-grid .memory-card .sel-menu > *:hover {
   background: orange;
+  cursor: pointer;
+}
+
+#play-nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+#play-nav .atomic-btn {
+  padding: 10px 20px;
   cursor: pointer;
 }
